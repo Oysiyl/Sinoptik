@@ -34,7 +34,7 @@ df.sunDown = pd.to_datetime(df.sunDown, format='%H:%M')
 #print(df.sunUp)
 #print(df.sunDown)
 
-wiwi = list(df.sunDown - df.sunUp)
+#wiwi = list(df.sunDown - df.sunUp)
 
 c = (df['sunDown'] - df['sunUp'])\
               .dt.components[['days', 'hours', 'minutes']]
@@ -74,7 +74,9 @@ print(b)
 print(c)
 df3 = pd.DataFrame()
 
-years = list(range(1880,2010))
+years = [*range(1880,2010)]
+#years = [*years]
+print(years)
 
 df3["year"] = years
 print(df3["year"])
@@ -82,7 +84,7 @@ df3["year"].dtype
 df2["maxYear0"] = df2["maxYear"].str.split(",")
 
 #print(df2["maxYear0"])
-wow = list(df2["maxYear0"])
+wow = [*df2["maxYear0"]]
 #print((df2["minYear"] == 1971).sum())
 #print(wow)
 wow3 = df2["maxYear"].tolist()
@@ -90,7 +92,7 @@ wow3 = df2["maxYear"].tolist()
 
 wow4 = []
 
-for i in list(range(len(wow3))):
+for i in [*range(len(wow3))]:
     wow4.append(wow3[i].replace(" ", "").split(",")[-1])
 #print(wow4)
 #print(len(wow4))
@@ -99,7 +101,7 @@ hihi = Counter(wow4)
 
 ignore = ["188","189","190","191","192","193","194","195","196","197","198","199","200","201","2"]
 hyhy = Counter(wow4)
-for word in list(hyhy):
+for word in [*hyhy]:
     if word in ignore:
         del hyhy[word]
     
@@ -177,7 +179,7 @@ df3["count"] = 0
 df3["year"].dtype
 df2["minYear0"] = df2["minYear"].str.split(",")
 #print(df2["minYear0"])
-wow = list(df2["minYear0"])
+wow = [*df2["minYear0"]]
 #print((df2["minYear"] == 1971).sum())
 #print(wow)
 wow3 = df2["minYear"].tolist()
@@ -185,7 +187,7 @@ wow3 = df2["minYear"].tolist()
 
 wow4 = []
 
-for i in list(range(len(wow3))):
+for i in [*range(len(wow3))]:
     wow4.append(wow3[i].replace(" ", "").split(",")[0])
 #print(wow4)
 #print(len(wow4))
@@ -195,7 +197,7 @@ hihi = Counter(wow4)
 ignore = ["188","189","190","191","192","193","194","195","196","197","198","199","200","201","2"]
 ignore2 = [188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 2]
 hyhy = Counter(wow4)
-for word in list(hyhy):
+for word in [*hyhy]:
     if word in ignore:
         del hyhy[word]
        
@@ -346,90 +348,93 @@ print(second)
 
 for i in range(len(second)):
     k = second[i]
-    if (i == 9):
+    if (i == 9) | (i == 19) | (i == 29) | (i == 39) | (i == 49) | (i == 59) | (i == 69) | (i == 79) | (i == 89) | (i == 99) | (i == 109) | (i == 119) | (i == 129):
         k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
         tencountssecond.append(k)
-    if (i == 19):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 29):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 39):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 49):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 59):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 69):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 79):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 89):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 99):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 109):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 119):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
-    if (i == 129):
-        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
-        tencountssecond.append(k)
+#    if (i == 19):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 29):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 39):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 49):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 59):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 69):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 79):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 89):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 99):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 109):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 119):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
+#    if (i == 129):
+#        k = second[i-9] + second[i-8] + second[i-7] + second[i-6] + second[i-5] + second[i-4] + second[i-3] + second[i-2] + second[i-1] + second[i]
+#        tencountssecond.append(k)
         
         
 print(tencountssecond)
 
 for i in range(len(first)):
     k = first[i]
-    if (i == 9):
+    if (i == 9) | (i == 19) | (i == 29) | (i == 39) | (i == 49) | (i == 59) | (i == 69) | (i == 79) | (i == 89) | (i == 99) | (i == 109) | (i == 119) | (i == 129):
         k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
         tencountsfirst.append(k)
-    if (i == 19):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 29):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 39):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 49):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 59):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 69):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 79):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 89):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 99):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 109):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 119):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
-    if (i == 129):
-        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
-        tencountsfirst.append(k)
+        #    if (i == 9):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 19):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 29):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 39):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 49):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 59):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 69):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 79):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 89):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 99):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 109):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 119):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
+#    if (i == 129):
+#        k = first[i-9] + first[i-8] + first[i-7] + first[i-6] + first[i-5] + first[i-4] + first[i-3] + first[i-2] + first[i-1] + first[i]
+#        tencountsfirst.append(k)
         
         
 print(tencountsfirst)
