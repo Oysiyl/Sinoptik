@@ -33,7 +33,8 @@ df.sunUp = pd.to_datetime(df.sunUp, format='%H:%M')
 df.sunDown = pd.to_datetime(df.sunDown, format='%H:%M')
 #print(df.sunUp)
 #print(df.sunDown)
-
+x = (32,24)
+y = 300
 #wiwi = list(df.sunDown - df.sunUp)
 
 c = (df['sunDown'] - df['sunUp'])\
@@ -57,6 +58,10 @@ df2  = df.iloc[:, 1:-3]
 #print(df2['minTemp'].min())
 #print(df2['maxYear'].max())
 #print(df2['minYear'].min())
+#import matplotlib as mpl
+#dpi = 32
+#fig = plt.figure(dpi = dpi, figsize = (1024 / dpi, 768 / dpi) )
+#mpl.rcParams.update({'font.size': 10})
 
 import datetime
 
@@ -142,7 +147,7 @@ result = df7[["year","count"]]
 #result = pd.read_csv("resultitet.csv")
 #del result["index"]
 print(result)
-
+x
 #print(result)
 plt.hist(result, 13, density=True, facecolor='g', alpha=0.75)
 #plt.xticks(range(1890,2010))
@@ -150,10 +155,13 @@ plt.title("Hot temperature per year")
 plt.xlabel("year")
 plt.ylabel("counts")
 plt.show()
+x
 plt.bar(result["year"],result["count"])
 plt.show()
+x
 plt.scatter(result["year"],result["count"])
 plt.show()
+x
 plt.plot(result["year"],result["count"])
 plt.xticks(rotation=90)
 plt.show()
@@ -283,7 +291,7 @@ result2 = df13[["year","count"]]
 #result2 = pd.read_csv("resultite.csv")
 #del result2["index"]
 print(result2)
-
+plt.figure(figsize=x, dpi=y)
 #plt.xticks(range(1890,2010))
 #plt.title("Hot temperature per year")
 #plt.xlabel("year")
@@ -292,16 +300,18 @@ print(result2)
 plt.bar(result["year"],result["count"])
 plt.savefig("Hotbar.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.scatter(result["year"],result["count"])
 plt.savefig("Hotscatter.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.plot(result["year"],result["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Hotplot.png")
 plt.show()
 
 
-plt.figure(figsize=(13,8))
+plt.figure(figsize=x, dpi=y)
 sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=2)
 sns.barplot(x=result["year"], y=result["count"], data=result.sort_values(['year', 'count']))
@@ -309,27 +319,29 @@ plt.xlabel("Years from 1880 to 2010")
 plt.ylabel("Number of Records")
 plt.xticks(rotation=45)
 plt.title("Hot Records in " + str(city))
-plt.xticks([])
+#plt.xticks([])
 plt.savefig("Hotrecordsyears.png")
 plt.show()
 
-
+plt.figure(figsize=x, dpi=y)
 plt.bar(result2["year"],result2["count"])
 plt.savefig("Coldbar.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.scatter(result2["year"],result2["count"])
 plt.savefig("Coldscatter.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.plot(result2["year"],result2["count"])
 plt.savefig("Coldplot.png")
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.show()
 
 
 #print(len(yay))
 #print(result2)
 # Monthly plot of rainy days
-plt.figure(figsize=(13,8))
+plt.figure(figsize=x, dpi=y)
 sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=2)
 sns.barplot(x=result2["year"], y=result2["count"], data=result2.sort_values(['year', 'count']))
@@ -337,7 +349,7 @@ plt.xlabel("Years from 1880 to 2010")
 plt.ylabel("Number of Records")
 plt.xticks(rotation=45)
 plt.title("Cold Records in " + str(city))
-plt.xticks([])
+#plt.xticks([])
 plt.savefig("Coldrecordsyears.png")
 plt.show()
 
@@ -451,17 +463,19 @@ df21 = pd.DataFrame({"year":ten, "count": tencountsfirst})
 df22 = pd.DataFrame({"year":ten, "count": tencountssecond})
 print(df21)
 print(df22)
-
+plt.figure(figsize=x, dpi=y)
 plt.bar(df21["year"],df21["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Hotbar2.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.scatter(df21["year"],df21["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Hotscatter2.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.plot(df21["year"],df21["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Hotplot2.png")
 plt.show()
 
@@ -469,7 +483,7 @@ plt.show()
 #print(len(yay))
 #print(result2)
 # Monthly plot of rainy days
-plt.figure(figsize=(13,8))
+plt.figure(figsize=x, dpi=y)
 sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=2)
 sns.barplot(x=df21["year"], y=df21["count"], data=df21.sort_values(['year', 'count']))
@@ -480,24 +494,28 @@ plt.title("Hot Records in " + str(city))
 #plt.xticks([])
 plt.savefig("Hotrecordsdecades.png")
 plt.show()
-
+plt.figure(figsize=x, dpi=y)
 plt.bar(df22["year"],df22["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Coldbar2.png")
 plt.show()
+plt.figure(figsize=x, dpi=y)
 plt.scatter(df22["year"],df22["count"])
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.savefig("Coldscatter2.png")
 plt.show()
+
+plt.figure(figsize=x, dpi=y)
+#plt.xticks(rotation=90)
 plt.plot(df22["year"],df22["count"])
-plt.xticks(rotation=90)
 plt.savefig("Coldplot2.png")
 plt.show()
 
 #print(len(yay))
 #print(result2)
 # Monthly plot of rainy days
-plt.figure(figsize=(13,8))
+
+plt.figure(figsize=x, dpi=y)
 sns.set_style("whitegrid")
 sns.set_context("notebook", font_scale=2)
 sns.barplot(x=df22["year"], y=df22["count"], data=df22.sort_values(['year', 'count']))
