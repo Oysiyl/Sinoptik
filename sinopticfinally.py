@@ -7,12 +7,16 @@ Created on Sat Jul 14 20:18:48 2018
 """
 
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+import requests
 
-citys = ['chernigov','dnepr','donetsk','herson','Kharkov','kiev','lugansk','lvov','nikolaev','odessa','poltava','sympheropol','vinitsa','zaporozje']
+citys = ['chernigov','dnepr','donetsk','herson','Kharkov', \
+         'kiev','lugansk','lvov','nikolaev','odessa', \
+         'poltava','sympheropol','vinitsa','zaporozje']
 
-toocitys = ['чернигов', 'днепр-303007131', 'донецк', 'херсон', 'харьков', 'киев', 'луганск', 'львов', 'николаев', 'одесса', 'полтава', 'симферополь', 'винница', 'запорожье']
+toocitys = ['чернигов', 'днепр-303007131', 'донецк', 'херсон', 'харьков', \
+            'киев', 'луганск', 'львов', 'николаев', 'одесса', \
+            'полтава', 'симферополь', 'винница', 'запорожье']
 
 i = 4
 
@@ -57,9 +61,9 @@ adres2 = [prepareadres(city,y,m,i) for i in range(year)]
 print(adres2)
 print(len(adres2))
 
-def weather(adres):
+def onepage(adres):
     
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0'}
     page = requests.get(adres, headers = headers)
     soup = BeautifulSoup(page.content, 'html.parser')
     up = soup.find("p", class_ = "infoHistoryval")
@@ -95,9 +99,7 @@ def weather(adres):
     tempMax = list(tempMax)[1].get_text()
     tempMin = soup.find("div", class_ = "min")
     tempMin = list(tempMin)[1].get_text()  
-
-# find a problem!
-    
+   
     df1 = pd.DataFrame({
     "infoDayweek": infoDayweek,
     "infoDate": infoDate,
@@ -123,7 +125,7 @@ def weather(adres):
 df = pd.DataFrame()
 
 for url in adres2:
-    df = pd.concat([df, weather(url)], ignore_index = True)
+    df = pd.concat([df, onepage(url)], ignore_index = True)
     
 print(df)
 print(df.iloc[:, 0:-2])
