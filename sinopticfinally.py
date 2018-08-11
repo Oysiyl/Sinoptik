@@ -5,44 +5,48 @@ Created on Sat Jul 14 20:18:48 2018
 
 @author: dmitriy
 """
-
+#import all the necessary libraries
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
-
+#Create a list which contains names of the citys
 citys = ['chernigov','dnepr','donetsk','herson','Kharkov', \
          'kiev','lugansk','lvov','nikolaev','odessa', \
          'poltava','sympheropol','vinitsa','zaporozje']
-
+#Another list with city`s names in Russian
 toocitys = ['чернигов', 'днепр-303007131', 'донецк', 'херсон', 'харьков', \
             'киев', 'луганск', 'львов', 'николаев', 'одесса', \
             'полтава', 'симферополь', 'винница', 'запорожье']
-
+#Choose what city you want to scrape
 i = 4
-
 city = toocitys[i]
-
+#Choose year
 y = 2017
+#Set month and days variables to 1
 m = 1
 d = 1
-
+#Create list with number of days in each month
 months = [31,28,31,30,31,30,31,31,30,31,30,31]
-
-#month2 = [sum(month[:i+1]) for i in range(len(month))]
-
+#Found the sum of list above
+year = sum(months)
+#Check sum: correct or not?
+print(year)
+#Create function that create adresses
 def prepareadres(city,y,m,d):
-    
-    #months2 = [028, 31]
+    #Define iterator
     d = d + 1
+    #Set days iterator to 0
     d0 = 0
+    #Set month iterator to 0
     m0 = 0
+    #Using for loop to get the correct adresses
     for month in months:
-        if d > 31:
+        if d > month:
              d = d - month
              m += 1
     if d == sum(months):    
         print("year complete")
-        #print(df.iloc[0, :-2])
+        print(df.iloc[0, :-2])
     if (m < 10) and (d < 10):
         adres = "https://sinoptik.ua/погода-" + city + "/" + str(y) + "-" + str(m0) + str(m) + "-" + str(d0) + str(d)
     elif (m < 10) and (d >= 10):
@@ -51,16 +55,14 @@ def prepareadres(city,y,m,d):
         adres = "https://sinoptik.ua/погода-" + city + "/" + str(y) + "-" + str(m) + "-" + str(d0) + str(d)   
     else:
         adres = "https://sinoptik.ua/погода-" + city + "/" + str(y) + "-" + str(m) + "-" + str(d)
-    #print(adres)
+    print(adres)
     return adres
-
-year = sum(months)
-
+#Got all the adresses
 adres2 = [prepareadres(city,y,m,i) for i in range(year)]
-
+#Check output
 print(adres2)
 print(len(adres2))
-
+#Create function that scraping full one page from site
 def onepage(adres):
     
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -116,21 +118,18 @@ def onepage(adres):
     "dayHistory": dayHistory
     }, index=[0])
     check = df1.iloc[0, 0:-2]
+    #Cheack output
     print(check)
-
+    #Return df
     return df1
-    
-
-
+#Create an empty DataFrame  
 df = pd.DataFrame()
-
+#Adding each new page in one DataFrame
 for url in adres2:
     df = pd.concat([df, onepage(url)], ignore_index = True)
-    
+#Check df    
 print(df)
 print(df.iloc[:, 0:-2])
+#Save to csv
 df.to_csv(citys[i] + ".csv")
 df = pd.read_csv(citys[i] + ".csv")
-#df2 = df.iloc[:,1:-2]
-#print(df)
-#df2.to_csv("results.csv")
