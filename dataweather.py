@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
+import plotly
+import plotly.plotly as py
+import plotly.graph_objs as go
+
 citys = ['chernigov','dnepr','donetsk','herson','Kharkov','kiev','lugansk','lvov','nikolaev','odessa','poltava','sympheropol','vinitsa','zaporozje']
 
 i = 4
@@ -34,7 +38,7 @@ df.sunDown = pd.to_datetime(df.sunDown, format='%H:%M')
 #print(df.sunUp)
 #print(df.sunDown)
 x = (32,24)
-y = 300
+y = 80
 #wiwi = list(df.sunDown - df.sunUp)
 
 c = (df['sunDown'] - df['sunUp'])\
@@ -319,9 +323,37 @@ plt.xlabel("Years from 1880 to 2010")
 plt.ylabel("Number of Records")
 plt.xticks(rotation=45)
 plt.title("Hot Records in " + str(city))
-#plt.xticks([])
+plt.xticks([])
 plt.savefig("Hotrecordsyears.png")
 plt.show()
+
+#Create a lists from DataFrame columns
+year = result["year"].astype(int)
+count = result["count"].astype(int)
+print(result.dtypes)
+year = [*year]
+count = [*count]
+
+#Create an empty list
+textlist = []
+#Fill this list with info from all of the lists above
+for i in [*range(len(year))]:
+    i = str(count[i]) + "," + str(year[i]) 
+    textlist.append(i)
+#Set title plot
+title = "Hot records"
+data = [go.Bar(
+            x=result["year"],
+            y=result["count"],
+            text = textlist,
+            hoverinfo = "text",
+            marker = dict(color = "green"),
+            showlegend = False)
+       ]
+layout = dict(title = 'Topics')
+fig = go.Figure(data=data, layout=layout)
+
+plotly.offline.plot(fig, filename='Hot.html', auto_open = False)
 
 plt.figure(figsize=x, dpi=y)
 plt.bar(result2["year"],result2["count"])
@@ -349,10 +381,97 @@ plt.xlabel("Years from 1880 to 2010")
 plt.ylabel("Number of Records")
 plt.xticks(rotation=45)
 plt.title("Cold Records in " + str(city))
-#plt.xticks([])
+plt.xticks([])
 plt.savefig("Coldrecordsyears.png")
 plt.show()
 
+
+#Create a lists from DataFrame columns
+year2 = result2["year"].astype(int)
+count2 = result2["count"].astype(int)
+print(result.dtypes)
+year2 = [*year2]
+count2 = [*count2]
+
+#Create an empty list
+textlist2 = []
+#Fill this list with info from all of the lists above
+for i in [*range(len(year2))]:
+    i = str(count2[i]) + "," + str(year2[i]) 
+    textlist2.append(i)
+#Set title plot
+title = "Cold records"
+data = [go.Bar(
+            x=result2["year"],
+            y=result2["count"],
+            text = textlist2,
+            hoverinfo = "text",
+            marker = dict(color = "green"),
+            showlegend = False)
+       ]
+layout = dict(title = 'Topics')
+fig = go.Figure(data=data, layout=layout)
+
+plotly.offline.plot(fig, filename='Cold.html', auto_open = False)
+
+trace1 = go.Bar(
+    x=result["year"],
+    y=result["count"],
+    name='Hot',
+    marker=dict(
+        color='rgb(219, 64, 82, 0.7)',
+        line=dict(
+            color='rgba(219, 64, 82, 1.0)',
+            width=2,
+        )
+    )
+)
+trace2 = go.Bar(
+    x=result2["year"],
+    y=result2["count"],
+    name='Cold',
+    marker=dict(
+        color='rgb(55, 128, 191, 0.7)',
+        line=dict(
+            color='rgba(55, 128, 191, 1.0)',
+            width=2,
+        )
+    )
+)
+data = [trace1, trace2]
+layout = go.Layout(
+    title='Hot & cold records',
+    xaxis=dict(
+        title='Years',
+        tickfont=dict(
+            size=14,
+            color='rgb(107, 107, 107)'
+        )
+    ),
+    yaxis=dict(
+        title='Count',
+        titlefont=dict(
+            size=16,
+            color='rgb(107, 107, 107)'
+        ),
+        tickfont=dict(
+            size=14,
+            color='rgb(107, 107, 107)'
+        )
+    ),
+    legend=dict(
+        x=0,
+        y=1.0,
+        bgcolor='rgba(255, 255, 255, 0)',
+        bordercolor='rgba(255, 255, 255, 0)'
+    ),
+    barmode='group',
+    bargap=0.15,
+    bargroupgap=0.1
+)
+
+fig = go.Figure(data=data, layout=layout)
+plotly.offline.plot(fig, filename='Comparison.html', auto_open = False)
 
 result2["wow"] = yay
 result["wow"] = yay
