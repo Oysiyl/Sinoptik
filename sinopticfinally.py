@@ -9,6 +9,7 @@ Created on Sat Jul 14 20:18:48 2018
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
+import time
 #Create a list which contains names of the citys
 citys = ['chernigov','dnepr','donetsk','herson','Kharkov', \
          'kiev','lugansk','lvov','nikolaev','odessa', \
@@ -21,7 +22,7 @@ toocitys = ['чернигов', 'днепр-303007131', 'донецк', 'хер�
 i = 4
 city = toocitys[i]
 #Choose year
-y = 2017
+y = 2018
 #Set month and days variables to 1
 m = 1
 d = 1
@@ -39,11 +40,14 @@ def prepareadres(city,y,m,d):
     d0 = 0
     #Set month iterator to 0
     m0 = 0
+    r = 0
     #Using for loop to get the correct adresses
     for month in months:
-        if d > month:
-             d = d - month
+        k = months[r]
+        if d > k:
+             d = d - k
              m += 1
+             r += 1
     if d == sum(months):    
         print("year complete")
         print(df.iloc[0, :-2])
@@ -122,6 +126,7 @@ def onepage(adres):
     print(check)
     #Return df
     return df1
+
 #Create an empty DataFrame  
 df = pd.DataFrame()
 #Adding each new page in one DataFrame
